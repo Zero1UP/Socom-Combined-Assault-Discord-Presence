@@ -1,6 +1,6 @@
-﻿namespace Socom_Combined_Assault_Discord_Presence
+namespace SOCOM_CA_Discord_Presence
 {
-    partial class frm_Main
+    partial class Form1
     {
         /// <summary>
         /// Required designer variable.
@@ -29,53 +29,60 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.tmr_GetPCSX2Data = new System.Windows.Forms.Timer(this.components);
-            this.tmr_CheckPCSX2 = new System.Windows.Forms.Timer(this.components);
-            this.lbl_PCSX2 = new System.Windows.Forms.Label();
+            this.ProcessTimer = new System.Windows.Forms.Timer(this.components);
+            this.MemoryTimer = new System.Windows.Forms.Timer(this.components);
+            this.pnl_PCSX2Detected = new System.Windows.Forms.Panel();
+            this.pcsx2Status = new System.Windows.Forms.Label();
+            this.pnl_PCSX2Detected.SuspendLayout();
             this.SuspendLayout();
             // 
-            // tmr_GetPCSX2Data
+            // ProcessTimer
             // 
-            this.tmr_GetPCSX2Data.Enabled = true;
-            this.tmr_GetPCSX2Data.Interval = 1000;
-            this.tmr_GetPCSX2Data.Tick += new System.EventHandler(this.tmr_GetPCSX2Data_Tick);
+            this.ProcessTimer.Enabled = true;
+            this.ProcessTimer.Tick += new System.EventHandler(this.ProcessTimer_Tick);
             // 
-            // tmr_CheckPCSX2
+            // MemoryTimer
             // 
-            this.tmr_CheckPCSX2.Enabled = true;
-            this.tmr_CheckPCSX2.Tick += new System.EventHandler(this.tmr_CheckPCSX2_Tick);
+            this.MemoryTimer.Enabled = true;
+            this.MemoryTimer.Tick += new System.EventHandler(this.MemoryTimer_Tick);
             // 
-            // lbl_PCSX2
+            // pnl_PCSX2Detected
             // 
-            this.lbl_PCSX2.AutoSize = true;
-            this.lbl_PCSX2.Location = new System.Drawing.Point(12, 13);
-            this.lbl_PCSX2.Name = "lbl_PCSX2";
-            this.lbl_PCSX2.Size = new System.Drawing.Size(35, 13);
-            this.lbl_PCSX2.TabIndex = 2;
-            this.lbl_PCSX2.Text = "label1";
+            this.pnl_PCSX2Detected.Controls.Add(this.pcsx2Status);
+            this.pnl_PCSX2Detected.Location = new System.Drawing.Point(-1, -1);
+            this.pnl_PCSX2Detected.Name = "pnl_PCSX2Detected";
+            this.pnl_PCSX2Detected.Size = new System.Drawing.Size(200, 100);
+            this.pnl_PCSX2Detected.TabIndex = 0;
             // 
-            // frm_Main
+            // pcsx2Status
+            // 
+            this.pcsx2Status.AutoSize = true;
+            this.pcsx2Status.Location = new System.Drawing.Point(12, 9);
+            this.pcsx2Status.Name = "pcsx2Status";
+            this.pcsx2Status.Size = new System.Drawing.Size(35, 13);
+            this.pcsx2Status.TabIndex = 0;
+            this.pcsx2Status.Text = "label1";
+            // 
+            // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.Black;
-            this.ClientSize = new System.Drawing.Size(221, 35);
-            this.Controls.Add(this.lbl_PCSX2);
-            this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(237, 74);
-            this.MinimumSize = new System.Drawing.Size(237, 74);
-            this.Name = "frm_Main";
-            this.Text = "SOCOM CA";
+            this.ClientSize = new System.Drawing.Size(198, 96);
+            this.Controls.Add(this.pnl_PCSX2Detected);
+            this.Name = "Form1";
+            this.Text = "Form1";
+            this.Load += new System.EventHandler(this.Form1_Load);
+            this.pnl_PCSX2Detected.ResumeLayout(false);
+            this.pnl_PCSX2Detected.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Timer tmr_GetPCSX2Data;
-        private System.Windows.Forms.Timer tmr_CheckPCSX2;
-        private System.Windows.Forms.Label lbl_PCSX2;
+        private System.Windows.Forms.Timer ProcessTimer;
+        private System.Windows.Forms.Timer MemoryTimer;
+        private System.Windows.Forms.Panel pnl_PCSX2Detected;
+        private System.Windows.Forms.Label pcsx2Status;
     }
 }
-
