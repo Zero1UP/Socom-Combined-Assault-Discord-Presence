@@ -13,4 +13,5 @@ All maps will show the same image for till I am able to get decent images of all
 * Room Name seems bugged
 * Everything else appears to work just fine
 * Discord RPC has been forwarded to my RPC (CENT)
+
 ![image](https://user-images.githubusercontent.com/80198020/115490514-3ff1bd00-a22c-11eb-854b-b4d3a3505863.png)
