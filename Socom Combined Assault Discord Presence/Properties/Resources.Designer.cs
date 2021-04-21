@@ -8,10 +8,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Socom_Combined_Assault_Discord_Presence.Properties
+
+namespace SOCOM_CA_Discord_Presence.Properties
 {
-
-
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
     /// </summary>
@@ -44,7 +43,7 @@ namespace Socom_Combined_Assault_Discord_Presence.Properties
             {
                 if ((resourceMan == null))
                 {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Socom_Combined_Assault_Discord_Presence.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("SOCOM_CA_Discord_Presence.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
