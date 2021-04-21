@@ -1,10 +1,10 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Socom_Combined_Assault_Discord_Presence
+namespace SOCOM_CA_Discord_Presence
 {
     static class Program
     {
@@ -16,7 +16,7 @@ namespace Socom_Combined_Assault_Discord_Presence
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frm_Main());
+            Application.Run(new Form1());
         }
     }
 }
