@@ -1,25 +1,30 @@
-﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
-VisualStudioVersion = 16.0.29613.14
+VisualStudioVersion = 16.0.31019.35
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Socom Combined Assault Discord Presence", "Socom Combined Assault Discord Presence\Socom Combined Assault Discord Presence.csproj", "{0C2A9996-E6B7-40D6-B3ED-6E57A4E7B33C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SOCOM CA Discord Presence", "SOCOM CA Discord Presence.csproj", "{759ACA42-EDE2-439F-B9A0-2F9B396B4069}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		Debug|x86 = Debug|x86
 		Release|Any CPU = Release|Any CPU
+		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{0C2A9996-E6B7-40D6-B3ED-6E57A4E7B33C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0C2A9996-E6B7-40D6-B3ED-6E57A4E7B33C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0C2A9996-E6B7-40D6-B3ED-6E57A4E7B33C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0C2A9996-E6B7-40D6-B3ED-6E57A4E7B33C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{759ACA42-EDE2-439F-B9A0-2F9B396B4069}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{759ACA42-EDE2-439F-B9A0-2F9B396B4069}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{759ACA42-EDE2-439F-B9A0-2F9B396B4069}.Debug|x86.ActiveCfg = Debug|x86
+		{759ACA42-EDE2-439F-B9A0-2F9B396B4069}.Debug|x86.Build.0 = Debug|x86
+		{759ACA42-EDE2-439F-B9A0-2F9B396B4069}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{759ACA42-EDE2-439F-B9A0-2F9B396B4069}.Release|Any CPU.Build.0 = Release|Any CPU
+		{759ACA42-EDE2-439F-B9A0-2F9B396B4069}.Release|x86.ActiveCfg = Release|x86
+		{759ACA42-EDE2-439F-B9A0-2F9B396B4069}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {414B91A6-5DCA-451A-A709-A4701DE5837D}
+		SolutionGuid = {BA395045-C873-4ACC-930B-CEB7237BBE7D}
 	EndGlobalSection
 EndGlobal
