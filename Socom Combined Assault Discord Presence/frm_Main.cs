@@ -1,23 +1,27 @@
-﻿using DiscordRPC;
-using Memory;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Diagnostics;
+using DiscordRPC;
 using System.Drawing;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using Binarysharp.MemoryManagement;
 using System.Windows.Forms;
+using System.Diagnostics;
 
-namespace Socom_Combined_Assault_Discord_Presence
+namespace SOCOM_CA_Discord_Presence
 {
-    public partial class frm_Main : Form
+    public partial class Form1 : Form
     {
+        /// <summary>
+        /// MemorySharp //Start
+        /// </summary>
+        MemorySharp m = null;
         private const string PCSX2PROCESSNAME = "pcsx2";
         bool pcsx2Running;
-        Mem m = new Mem();
+
+        /// <summary>
+        /// Discord Presence //Start
+        /// </summary>
+
         bool gameStarted = false;
         private static RichPresence presence = new RichPresence()
         {
@@ -32,19 +36,16 @@ namespace Socom_Combined_Assault_Discord_Presence
         };
         public DiscordRpcClient client;
 
-        public frm_Main()
+        public Form1()
         {
             InitializeComponent();
-            client = new DiscordRpcClient("662019219030016001");
-
+            client = new DiscordRpcClient("774376436387676182");
             client.Initialize();
             client.SetPresence(presence);
         }
-        private void setPresence(string roomName, int sealWins, int mercWins, string mapID)
+
+        private void setPresence(string roomName, int sealWins, int mercWins)
         {
-
-            MapDataModel mapInfo = GameHelper.mapInfo.Find(x => x._mapID.ToUpper() == mapID.ToUpper());
-
             if (sealWins == -1 && mercWins == -1)
             {
                 presence.Details = "Not currently in a game.";
@@ -53,52 +54,68 @@ namespace Socom_Combined_Assault_Discord_Presence
             {
                 presence.Details = "Seals: " + sealWins.ToString() + " || Mercs: " + mercWins.ToString();
             }
-
             presence.State = "Room: " + roomName;
-
             presence.Assets = new Assets();
-
-            presence.Assets.LargeImageKey = "default";
-            presence.Assets.SmallImageKey = "default";
-            presence.Assets.LargeImageText = mapInfo._mapName;
-            presence.Assets.SmallImageText = mapInfo._mapName;
-
+            presence.Assets.LargeImageKey = "1";
+            presence.Assets.SmallImageKey = "green";
+            //presence.Assets.LargeImageText =
+            //presence.Assets.SmallImageText =
             client.SetPresence(presence);
         }
 
-
-        private void tmr_CheckPCSX2_Tick(object sender, EventArgs e)
+        private void resetPresence()
         {
-            Process[] pcsx2 = Process.GetProcessesByName(PCSX2PROCESSNAME);
-
-            if (pcsx2.Length > 0)
-            {
-                lbl_PCSX2.Text = "PCSX2 Detected";
-                lbl_PCSX2.ForeColor = Color.FromArgb(20, 192, 90);
-                pcsx2Running = true;
-            }
-            else
-            {
-                lbl_PCSX2.Text = "Waiting for PCSX2...";
-                lbl_PCSX2.ForeColor = Color.FromArgb(120, 120, 120);
-                pcsx2Running = false;
-            }
+            presence.Timestamps = null;
+            setPresence("", -1, -1);
+            gameStarted = false;
         }
 
-        private void tmr_GetPCSX2Data_Tick(object sender, EventArgs e)
+        private void Form1_Load(object sender, EventArgs e)
         {
-            if (pcsx2Running)
+            if (!pcsx2Running)
             {
-                m.OpenProcess(PCSX2PROCESSNAME + ".exe");
-                //Check to make sure that the user is even in a game to begin with
-                if ((m.readBytes(GameHelper.PLAYER_POINTER_ADDRESS, 4) != null) && (!m.readBytes(GameHelper.PLAYER_POINTER_ADDRESS, 4).SequenceEqual(new byte[] { 0, 0, 0, 0 })))
+                return;
+            }
+            m = new MemorySharp(Process.GetProcessesByName(PCSX2PROCESSNAME).First());
+        }
+
+
+        private void ProcessTimer_Tick(object sender, EventArgs e)
+        {
+            Process[] pcsx2 = Process.GetProcessesByName(PCSX2PROCESSNAME);
+            if (pcsx2.Length > 0)
+            {
+                //Color Status +Label Text ON
+                pcsx2Status.Text = "PCSX2 CONNECTED";
+                pnl_PCSX2Detected.BackColor = Color.FromArgb(75, 100, 0);
+                pcsx2Running = true;
+                return;
+            }
+            //Color Status +Label Text OFF
+            pcsx2Status.Text = "PCSX2 NOT CONNECTED";
+            pnl_PCSX2Detected.BackColor = Color.FromArgb(100, 3, 0);
+            pcsx2Running = false;
+        }
+
+        private void MemoryTimer_Tick(object sender, EventArgs e)
+        {
+            if (!pcsx2Running)
+            {
+                return;
+            }
+            m = new MemorySharp(Process.GetProcessesByName(PCSX2PROCESSNAME).First());
+            try
+            {
+                if ((m.Read<byte>(GameHelper.PlayerPointer, 4, false) != null) && (!m.Read<byte>(GameHelper.PlayerPointer, 4, false).SequenceEqual(new byte[] { 0, 0, 0, 0 })))
                 {
-                    if (m.readByte(GameHelper.GAME_ENDED_ADDRESS) == 0)
+                    if (m.Read<byte>(GameHelper.GameEndAddress, false) == 0)
                     {
-                        string roomName = ByteConverstionHelper.convertBytesToString(m.readBytes(GameHelper.ROOM_NAME_ADDRESS, 22));
-                        string mapID = ByteConverstionHelper.convertBytesToString(m.readBytes(GameHelper.CURRENT_MAP_ADDRESS, 12));
-                        int sealsRoundsWon = m.readByte(GameHelper.SEAL_WIN_COUNTER_ADDRESS);
-                        int terroristRoundsWon = m.readByte(GameHelper.MERC_WIN_COUNTER_ADDRESS);
+                        IntPtr playerObjectAddress = new IntPtr(m.Read<int>(GameHelper.PlayerPointer, false)) + 0x20000000;
+                        //string roomName = ByteConverstionHelper.convertBytesToString(m.Read<byte>(GameHelper.RoomName, 22));
+                        string roomName = m.ReadString(GameHelper.RoomName, Encoding.Default, false, 4);
+                        string mapID = m.ReadString(GameHelper.CurrentMap, Encoding.Default, false, 4);
+                        int sealsRoundsWon = m.Read<byte>(GameHelper.SealWins, false);
+                        int terroristRoundsWon = m.Read<byte>(GameHelper.MercWins, false);
                         if (!gameStarted)
                         {
                             presence.Timestamps = new Timestamps()
@@ -109,25 +126,25 @@ namespace Socom_Combined_Assault_Discord_Presence
 
                             gameStarted = true;
                         }
-                        setPresence(roomName, sealsRoundsWon, terroristRoundsWon, mapID);
+                        setPresence(roomName, sealsRoundsWon, terroristRoundsWon);
                     }
                     else
                     {
-                        m.writeBytes(GameHelper.GAME_ENDED_ADDRESS, new byte[] { 0 });
-                        presence.Timestamps = null;
-                        setPresence("Not in a room or in lobby", -1, -1, "NONE");
-                        gameStarted = false;
+                        m.Write<byte>(GameHelper.GameEndAddress, new byte[] { 0x00 }, false);
+                        resetPresence();
                     }
                 }
                 else
                 {
-                    m.writeBytes(GameHelper.GAME_ENDED_ADDRESS, new byte[] { 0 });
-                    presence.Timestamps = null;
-                    setPresence("Not in a room or in lobby", -1, -1, "NONE");
-                    gameStarted = false;
+                    m.Write<byte>(GameHelper.GameEndAddress, new byte[] { 0x00 }, false);
+                    resetPresence();
                 }
             }
-           
+            catch (Exception)
+            {
+                //This only happens if the game isn't actually running but pcsx2 is. It would result in a crash but there's no reason to inform the user
+                resetPresence();
+            }
         }
     }
 }
