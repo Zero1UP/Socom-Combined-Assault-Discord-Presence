@@ -8,12 +8,31 @@ namespace Socom_Combined_Assault_Discord_Presence
 {
     public static class GameHelper
     {
-        public const string GAME_ENDED_ADDRESS = "20948264";
-        public const string CURRENT_MAP_ADDRESS = "20783B78";
-        public const string SEAL_WIN_COUNTER_ADDRESS = "20ccddac";
-        public const string MERC_WIN_COUNTER_ADDRESS = "20CCDDB4";
-        public const string PLAYER_POINTER_ADDRESS = "206FEB08";
-        public const string ROOM_NAME_ADDRESS = "20C3D9A8";
+        //NEW Memory Sharp Input
+        //Patch 1.0
+        public static IntPtr PLAYER_POINTER_ADDRESS = new IntPtr(0x206FEB08);
+        public static int PlayerKills = 0x654;
+        public static int PlayerDeaths = 0x65C;
+        public static IntPtr GAME_ENDED_ADDRESS = new IntPtr(0x20948264);
+        public static IntPtr CURRENT_MAP_ADDRESS = new IntPtr(0x20783B78);
+        public static IntPtr SEAL_WIN_COUNTER_ADDRESS = new IntPtr(0x20ccddac);
+        public static IntPtr MERC_WIN_COUNTER_ADDRESS = new IntPtr(0x20CCDDB4);
+        public static IntPtr ROOM_NAME_ADDRESS = new IntPtr(0x20C3D9A8);
+
+        //Patch1.4
+
+
+        //OLD Memory.dll Input
+        //public const string GAME_ENDED_ADDRESS = "20948264";
+        //public const string CURRENT_MAP_ADDRESS = "20783B78";
+        //public const string SEAL_WIN_COUNTER_ADDRESS = "20ccddac";
+        //public const string MERC_WIN_COUNTER_ADDRESS = "20CCDDB4";
+        //public const string PLAYER_POINTER_ADDRESS = "206FEB08";
+        //public const string ROOM_NAME_ADDRESS = "20C3D9A8";
+
+        /// <summary>
+        /// Current Map Image
+        /// </summary>
         public static List<MapDataModel> mapInfo = new List<MapDataModel>
         {
             { new MapDataModel("055146d2.ZAR","Harvester","default")},
@@ -52,4 +71,31 @@ namespace Socom_Combined_Assault_Discord_Presence
             { new MapDataModel("NONE","","default")}
         };
     }
+
+    public static class Socom3
+    {
+        //Patch 1.0
+        public static IntPtr PlayerPointer = new IntPtr(0x20649F78);
+        public static int PlayerKills = 0xF01C;
+        public static int PlayerDeaths = 0xF014;
+        public static int PlayerTeam = 0xD8;
+        public static int PlayerHealth = 0x968;
+
+        ///I'm still working on finding these addresses , these are leftover from CA for reference
+        //public static IntPtr GameEndAddress = new IntPtr(0x20948264);
+        //public static IntPtr CurrentMap = new IntPtr(0x20783B78);
+        //public static IntPtr SealWins = new IntPtr(0x20ccddac);
+        //public static IntPtr MercWins = new IntPtr(0x20CCDDB4);
+        //public static IntPtr RoomName = new IntPtr(0x20C3D9A8);
+    }
 }
+
+namespace Tools.Helpers
+{
+    public static class Extensions
+    {
+        public static IntPtr OffsetToPlaystationMemory(this IntPtr address)
+            => address + 0x20000000;
+    }
+}
+
