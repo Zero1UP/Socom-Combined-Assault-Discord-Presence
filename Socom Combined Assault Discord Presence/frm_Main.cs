@@ -39,7 +39,7 @@ namespace SOCOM_CA_Discord_Presence
         public Form1()
         {
             InitializeComponent();
-            client = new DiscordRpcClient("774376436387676182");
+            client = new DiscordRpcClient("");
             client.Initialize();
             client.SetPresence(presence);
         }
