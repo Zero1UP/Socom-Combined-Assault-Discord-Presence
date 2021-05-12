@@ -22,7 +22,7 @@ All maps will show the same image for till I am able to get decent images of all
 *Note: You must close the program when changing games , the program will crash otherwise.
 
 # Screenshots
-![image](https://user-images.githubusercontent.com/80198020/117941737-61e4d980-b2d8-11eb-86ae-3ef91a9d51d6.png)
+![image](https://user-images.githubusercontent.com/80198020/117941737-61e4d980-b2d8-11eb-86ae-3ef91a9d51d6.png)![image](https://user-images.githubusercontent.com/80198020/117942009-a07a9400-b2d8-11eb-83a4-5506535d7183.png)
 ![image](https://user-images.githubusercontent.com/80198020/117941240-e4b96480-b2d7-11eb-9847-5fd6797e1fce.png)
 
 
