@@ -18,6 +18,7 @@ All maps will show the same image for till I am able to get decent images of all
 - User must choose which game they are playing by clicking a checkbox
 - SOCOM 1 and SOCOM 3 do not have custom map images
 - SOCOM 3 is missing data for Team Wins , this will be updated soon , for now presence will display whether or not user is currently in game with KD/R
+
 *Note: You must close the program when changing games , the program will crash otherwise.
 
 # Screenshots
