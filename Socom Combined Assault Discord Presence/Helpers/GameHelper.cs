@@ -1,12 +1,103 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Socom_Combined_Assault_Discord_Presence
 {
-    public static class GameHelper
+    public static class SOCOM1
+    {
+        //Player Object Data
+        public static IntPtr PLAYER_POINTER_ADDRESS = new IntPtr(0x2048D548);
+        public const int PlayerName = 0x14;
+        public const int PlayerTeam = 0xC4;
+        public const int PlayerHealth = 0xED0;
+        public const int CurrentRound = 0x484;
+        public const int PlayerKills = 0x48C;
+        public const int PlayerDeaths = 0x494;
+
+        //Game information
+        public static IntPtr ROUND_TIMER = new IntPtr(0x20578100);
+        public static IntPtr GAME_ENDED_ADDRESS = new IntPtr(0x205D708C);
+        public static IntPtr SEAL_WIN_COUNTER_ADDRESS = new IntPtr(0x205D7514);
+        public static IntPtr TERR_WIN_COUNTER_ADDRESS = new IntPtr(0x205D7528);
+        public static IntPtr SEALS_ALIVE_COUNTER_ADDRESS = new IntPtr(0x205D70DC);
+        public static IntPtr TERR_ALIVE_COUNTER_ADDRESS = new IntPtr(0x205D70F0);
+
+        ///ROOM NAME?
+        ///CURRENT MAP ADDRESS?
+    }
+
+    public static class SOCOM2
+    {
+        public static IntPtr PLAYER_POINTER_ADDRESS = new IntPtr(0x20435618);
+        public static IntPtr GAME_ENDED_ADDRESS = new IntPtr(0x20694C44);  //May need to reset this to 0 after it ends, it seems to persist till the next game and doesn't reset when the player loads i
+        public static IntPtr CURRENT_MAP_ADDRESS = new IntPtr(0x204417C0); // Text String of MapID, if not in a game then it is set to NONE
+        public static IntPtr SEAL_WIN_COUNTER_ADDRESS = new IntPtr(0x20695388);
+        public static IntPtr TERRORIST_WIN_COUNTER_ADDRESS = new IntPtr(0x2069539C);
+        public static IntPtr ROOM_NAME_ADDRESS = new IntPtr(0x21FFBBE0);
+
+        public static int PLAYER_KILLS_OFFSET = 0x550;
+        public static int PLAYER_DEATHS_OFFSET = 0x556;
+        //public const string CUSTOM_MAP_ADDRESS = "200F71B0";
+
+
+        public static List<MapDataModelS2> mapInfo = new List<MapDataModelS2>
+        {
+            { new MapDataModelS2("MP1","Blizzard","blizzard","MP26","Blizzard Day","blizzard_day")},
+            { new MapDataModelS2("MP2","Frost Fire","frostfire","MP27","Frostfire Day","frostfire_day")},
+            { new MapDataModelS2("MP5","Abandoned","abandoned","MP21","Abandoned Day","abandoned_day")},
+            { new MapDataModelS2("MP73","Sand Storm","sandstorm","MP89","Sandstorm Day","sandstorm_day")},
+            { new MapDataModelS2("MP7","Night Stalker","nightstalker","MP29","Nightstalker Day","nightstalker_day")},
+            { new MapDataModelS2("MP6","Desert Glory","desertglory","MP28","Desert Glory Night","desertglory_night")},
+            { new MapDataModelS2("M51","Seeding Chaos","seedingchaos","","","")},
+            { new MapDataModelS2("M52","Terminal Transaction","terminaltransaction","","","")},
+            { new MapDataModelS2("M53","Upland Assault","default","","","")},
+            { new MapDataModelS2("M61","Urban Sweep","default","","","")},
+            { new MapDataModelS2("M62","Strangle Hold","default","","","")},
+            { new MapDataModelS2("M63","Hydro Electric","default","","","")},
+            { new MapDataModelS2("M71","Guardian Angels","default","","","")},
+            { new MapDataModelS2("M72","Protect and Serve","default","","","")},
+            { new MapDataModelS2("M73","Against the Tide","default","","","")},
+            { new MapDataModelS2("M81","Lockdown","default","","","")},
+            { new MapDataModelS2("M82","Guided Tour","default","","","")},
+            { new MapDataModelS2("M63","Doomsday Delivery","default","","","")},
+            { new MapDataModelS2("NONE","","default","","","")},
+            { new MapDataModelS2("MP10","Blood Lake","bloodlake","MP32","Blood Lake Night","bloodlake_night")},
+            { new MapDataModelS2("MP11","Death Trap","deathtrap","MP33","Death Trap Night","deathtrap_night")},
+            { new MapDataModelS2("MP12","The Ruins","theruins","MP34","The Ruins Night","theruins_night")},
+            { new MapDataModelS2("MP62","Enowapi","enowapi","","","")},
+            { new MapDataModelS2("MP8","Rat's Nest","ratsnest","MP30","Rat's Nest Day","ratsnest_day")},
+            { new MapDataModelS2("MP53","Fox Hunt","foxhunt","","","")},
+            { new MapDataModelS2("MP51","Vigilance","vigilance","","","")},
+            { new MapDataModelS2("MP9","Bitter Jungle","bitterjungle","MP31","Bitter Jungle Night","bitterjungle_night")},
+            { new MapDataModelS2("MP52","The Mixer","themixer","MP25","The Mixer Night","themixer_night")},
+            { new MapDataModelS2("MP71","Fishhook","fishhook","MP23","Fish Hook Night","fishhook_night")},
+            { new MapDataModelS2("MP72","Crossroads","crossroads","MP24","Crossroads Night","crossroads_night")},
+            { new MapDataModelS2("MP64","Shadow Falls","shadowfalls","MP80","Shadowfalls Day","shadowfalls_day")},
+            { new MapDataModelS2("MP61","Sujo","sujo","","","")},
+            { new MapDataModelS2("MP81","Chain Reaction","chainreaction","","","")},
+            { new MapDataModelS2("MP82","Guidanace","guidance","","","")},
+            { new MapDataModelS2("MP83","Requim","requiem","","","")}
+        };
+    }
+
+    public static class SOCOM3
+    {
+        //Patch 1.0
+        public static IntPtr PLAYER_POINTER_ADDRESS = new IntPtr(0x20649F78);
+        public static int PlayerKills = 0xF01C;
+        public static int PlayerDeaths = 0xF014;
+        public static int PlayerTeam = 0xD8;
+        public static int PlayerHealth = 0x968;
+
+        ///I'm still working on finding these addresses , these are leftover from CA for reference
+        //public static IntPtr GAME_ENDED_ADDRESS = new IntPtr(0x20948264);
+        //public static IntPtr CURRENT_MAP_ADDRESS = new IntPtr(0x20783B78);
+        //public static IntPtr SEAL_WIN_COUNTER_ADDRESS = new IntPtr(0x20ccddac);
+        //public static IntPtr TERR_WIN_COUNTER_ADDRESS = new IntPtr(0x20CCDDB4);
+        //public static IntPtr ROOM_NAME_ADDRESS = new IntPtr(0x20C3D9A8);
+    }
+
+    public static class SocomCA
     {
         //NEW Memory Sharp Input
         //Patch 1.0
@@ -70,23 +161,6 @@ namespace Socom_Combined_Assault_Discord_Presence
             { new MapDataModel("85a12d6.ZAR","Blizzard","default")},
             { new MapDataModel("NONE","","default")}
         };
-    }
-
-    public static class Socom3
-    {
-        //Patch 1.0
-        public static IntPtr PlayerPointer = new IntPtr(0x20649F78);
-        public static int PlayerKills = 0xF01C;
-        public static int PlayerDeaths = 0xF014;
-        public static int PlayerTeam = 0xD8;
-        public static int PlayerHealth = 0x968;
-
-        ///I'm still working on finding these addresses , these are leftover from CA for reference
-        //public static IntPtr GameEndAddress = new IntPtr(0x20948264);
-        //public static IntPtr CurrentMap = new IntPtr(0x20783B78);
-        //public static IntPtr SealWins = new IntPtr(0x20ccddac);
-        //public static IntPtr MercWins = new IntPtr(0x20CCDDB4);
-        //public static IntPtr RoomName = new IntPtr(0x20C3D9A8);
     }
 }
 
