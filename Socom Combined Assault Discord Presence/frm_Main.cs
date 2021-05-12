@@ -110,7 +110,7 @@ namespace Socom_Combined_Assault_Discord_Presence
                 else
                 {
                     presenceS1.Details = "Seals: " + sealWins + " || Terrorist: " + terrorWins;
-                    presenceS1.State = "Kills: " + kills + " Deaths: " + deaths;
+                    presenceS1.State = "Kills: " + kills + " || Deaths: " + deaths;
                 }
                 presenceS1.Assets = new Assets();
                 presenceS1.Assets.LargeImageKey = "1";
@@ -120,7 +120,6 @@ namespace Socom_Combined_Assault_Discord_Presence
                 clientS1.SetPresence(presenceS1);
             }
         }
-
 
         //SOCOM 2 Discord RPC
         private void setPresenceS2(int sealWins, int terrorWins, string mapID, short kills, short deaths)
@@ -134,7 +133,7 @@ namespace Socom_Combined_Assault_Discord_Presence
             else
             {
                 presenceS2.Details = "Seals: " + sealWins + " || Terrorist: " + terrorWins;
-                presenceS2.State = "Kills: " + kills + " Deaths: " + deaths;
+                presenceS2.State = "Kills: " + kills + " || Deaths: " + deaths;
             }
             presenceS2.Assets = new Assets();
             presenceS2.Assets.LargeImageKey = mapInfo._discordKey;
@@ -152,7 +151,6 @@ namespace Socom_Combined_Assault_Discord_Presence
             //}
             //else
         }
-
 
         //SOCOM 3 Discord RPC
         private void setPresenceS3(short PlayerKills, short PlayerDeaths)
@@ -174,8 +172,7 @@ namespace Socom_Combined_Assault_Discord_Presence
             clientS3.SetPresence(presenceS3);
         }
 
-        //ORIGINAL 
-        // private void setPresence(string roomName, int sealWins, int mercWins, string mapID)
+        //SOCOM CA Discord RPC
         private void setPresenceCA(int sealWins, int mercWins, short PlayerKills, short PlayerDeaths, string mapID)
         {
 
@@ -240,7 +237,7 @@ namespace Socom_Combined_Assault_Discord_Presence
             else
             {
                 lbl_PCSX2.Text = "Waiting for PCSX2...";
-                lbl_PCSX2.ForeColor = Color.FromArgb(120, 120, 120);
+                lbl_PCSX2.ForeColor = Color.FromArgb(192, 20, 50);
                 pcsx2Running = false;
             }
         }
@@ -278,6 +275,8 @@ namespace Socom_Combined_Assault_Discord_Presence
 
                                 gameStarted = true;
                             }
+                            lbl_RPC.Text = "Displaying SOCOM 1";
+                            lbl_RPC.ForeColor = Color.FromArgb(192, 90, 20);
                             setPresenceS1(sealsRoundsWon, terroristRoundsWon, kills, deaths);
                         }
                         else
@@ -326,6 +325,8 @@ namespace Socom_Combined_Assault_Discord_Presence
 
                                 gameStarted = true;
                             }
+                            lbl_RPC.Text = "Displaying SOCOM 2";
+                            lbl_RPC.ForeColor = Color.FromArgb(192, 90, 20);
                             setPresenceS2(sealsRoundsWon, terroristRoundsWon, mapID, kills, deaths);
                         }
                         else
@@ -366,6 +367,8 @@ namespace Socom_Combined_Assault_Discord_Presence
 
                         gameStarted = true;
                     }
+                    lbl_RPC.Text = "Displaying SOCOM 3";
+                    lbl_RPC.ForeColor = Color.FromArgb(192, 90, 20);
                     setPresenceS3(PlayerKills, PlayerDeaths);
                 }
             }
@@ -397,6 +400,8 @@ namespace Socom_Combined_Assault_Discord_Presence
                             gameStarted = true;
                         }
                         setPresenceCA(sealsRoundsWon, terroristRoundsWon, PlayerKills, PlayerDeaths, mapID);
+                        lbl_RPC.Text = "Displaying SOCOM CA";
+                        lbl_RPC.ForeColor = Color.FromArgb(192, 90, 20);
                     }
                     else
                     {
