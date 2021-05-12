@@ -71,6 +71,7 @@
     <Compile Include="Helpers\GameHelper.cs" />
     <Compile Include="Helpers\ByteConverstionHelper.cs" />
     <Compile Include="Models\MapDataModel.cs" />
+    <Compile Include="Models\MapDataModelS2.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="frm_Main.resx">
