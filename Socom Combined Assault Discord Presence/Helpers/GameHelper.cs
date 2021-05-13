@@ -84,17 +84,20 @@ namespace Socom_Combined_Assault_Discord_Presence
     {
         //Patch 1.0
         public static IntPtr PLAYER_POINTER_ADDRESS = new IntPtr(0x20649F78);
-        public static int PlayerKills = 0xF01C;
-        public static int PlayerDeaths = 0xF014;
+        public static int PlayerKills = 0x6C4;
+        public static int PlayerDeaths = 0x6FC;
         public static int PlayerTeam = 0xD8;
         public static int PlayerHealth = 0x968;
 
+        //Match Information
+        public static IntPtr GAME_ENDED_ADDRESS = new IntPtr(0x20887FA4);
+        public static IntPtr ROOM_NAME_ADDRESS = new IntPtr(0x206D7100);
+
         ///I'm still working on finding these addresses , these are leftover from CA for reference
-        //public static IntPtr GAME_ENDED_ADDRESS = new IntPtr(0x20948264);
         //public static IntPtr CURRENT_MAP_ADDRESS = new IntPtr(0x20783B78);
         //public static IntPtr SEAL_WIN_COUNTER_ADDRESS = new IntPtr(0x20ccddac);
         //public static IntPtr TERR_WIN_COUNTER_ADDRESS = new IntPtr(0x20CCDDB4);
-        //public static IntPtr ROOM_NAME_ADDRESS = new IntPtr(0x20C3D9A8);
+
     }
 
     public static class SocomCA

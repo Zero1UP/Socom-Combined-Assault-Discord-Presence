@@ -353,23 +353,40 @@ namespace Socom_Combined_Assault_Discord_Presence
             {
                 if ((m.Read<byte>(SOCOM3.PLAYER_POINTER_ADDRESS, 4, false) != null) && (!m.Read<byte>(SOCOM3.PLAYER_POINTER_ADDRESS, 4, false).SequenceEqual(new byte[] { 0, 0, 0, 0 })))
                 {
-                    IntPtr playerObjectAddress = new IntPtr(m.Read<int>(SOCOM3.PLAYER_POINTER_ADDRESS, false)).OffsetToPlaystationMemory();
-                    short PlayerKills = m.Read<short>(playerObjectAddress + SOCOM3.PlayerKills, false);
-                    short PlayerDeaths = m.Read<short>(playerObjectAddress + SOCOM3.PlayerDeaths, false);
-                    //int sealsRoundsWon = m.Read<byte>(SOCOM3.SEAL_WIN_COUNTER_ADDRESS, false);
-                    //int terroristRoundsWon = m.Read<byte>(SOCOM3.TERR_WIN_COUNTER_ADDRESS, false);
-                    if (!gameStarted)
+                    if (m.Read<byte>(SOCOM3.GAME_ENDED_ADDRESS, false) == 0)
                     {
-                        presenceS3.Timestamps = new Timestamps()
+                        IntPtr playerObjectAddress = new IntPtr(m.Read<int>(SOCOM3.PLAYER_POINTER_ADDRESS, false)).OffsetToPlaystationMemory();
+                        short PlayerKills = m.Read<short>(playerObjectAddress + SOCOM3.PlayerKills, false);
+                        short PlayerDeaths = m.Read<short>(playerObjectAddress + SOCOM3.PlayerDeaths, false);
+                        //int sealsRoundsWon = m.Read<byte>(SOCOM3.SEAL_WIN_COUNTER_ADDRESS, false);
+                        //int terroristRoundsWon = m.Read<byte>(SOCOM3.TERR_WIN_COUNTER_ADDRESS, false);
+                        if (!gameStarted)
                         {
-                            Start = DateTime.UtcNow
-                        };
+                            presenceS3.Timestamps = new Timestamps()
+                            {
+                                Start = DateTime.UtcNow
+                            };
 
-                        gameStarted = true;
+                            gameStarted = true;
+                        }
+                        lbl_RPC.Text = "Displaying SOCOM 3";
+                        lbl_RPC.ForeColor = Color.FromArgb(192, 90, 20);
+                        setPresenceS3(PlayerKills, PlayerDeaths);
                     }
-                    lbl_RPC.Text = "Displaying SOCOM 3";
-                    lbl_RPC.ForeColor = Color.FromArgb(192, 90, 20);
-                    setPresenceS3(PlayerKills, PlayerDeaths);
+                    else
+                    {
+                        m.Write<byte>(SOCOM3.GAME_ENDED_ADDRESS, new byte[] { 0x00 }, false);
+                        presenceCA.Timestamps = null;
+                        setPresenceS3(-1 , -1);
+                        gameStarted = false;
+                    }
+                }
+                else
+                {
+                    m.Write<byte>(SOCOM3.GAME_ENDED_ADDRESS, new byte[] { 0x00 }, false);
+                    presenceCA.Timestamps = null;
+                    setPresenceS3(-1 , -1);
+                    gameStarted = false;
                 }
             }
 
