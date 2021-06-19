@@ -28,16 +28,29 @@ namespace Socom_Combined_Assault_Discord_Presence
 
     public static class SOCOM2
     {
-        public static IntPtr PLAYER_POINTER_ADDRESS = new IntPtr(0x20435618);
-        public static IntPtr GAME_ENDED_ADDRESS = new IntPtr(0x20694C44);  //May need to reset this to 0 after it ends, it seems to persist till the next game and doesn't reset when the player loads i
-        public static IntPtr CURRENT_MAP_ADDRESS = new IntPtr(0x204417C0); // Text String of MapID, if not in a game then it is set to NONE
-        public static IntPtr SEAL_WIN_COUNTER_ADDRESS = new IntPtr(0x20695388);
-        public static IntPtr TERRORIST_WIN_COUNTER_ADDRESS = new IntPtr(0x2069539C);
-        public static IntPtr ROOM_NAME_ADDRESS = new IntPtr(0x21FFBBE0);
+        //r0004
+        //public static IntPtr PLAYER_POINTER_ADDRESS = new IntPtr(0x20435618);
+        //public static IntPtr GAME_ENDED_ADDRESS = new IntPtr(0x20694C44);  //May need to reset this to 0 after it ends, it seems to persist till the next game and doesn't reset when the player loads i
+        //public static IntPtr CURRENT_MAP_ADDRESS = new IntPtr(0x204417C0); // Text String of MapID, if not in a game then it is set to NONE
+        //public static IntPtr SEAL_WIN_COUNTER_ADDRESS = new IntPtr(0x20695388);
+        //public static IntPtr TERRORIST_WIN_COUNTER_ADDRESS = new IntPtr(0x2069539C);
+        //public static IntPtr ROOM_NAME_ADDRESS = new IntPtr(0x21FFBBE0);
 
+        //public static int PLAYER_KILLS_OFFSET = 0x550;
+        //public static int PLAYER_DEATHS_OFFSET = 0x556;
+        //public const string CUSTOM_MAP_ADDRESS = "200F71B0";
+
+        //r0001
+        public static IntPtr PLAYER_POINTER_ADDRESS = new IntPtr(0x20440C38);
         public static int PLAYER_KILLS_OFFSET = 0x550;
         public static int PLAYER_DEATHS_OFFSET = 0x556;
-        //public const string CUSTOM_MAP_ADDRESS = "200F71B0";
+
+        public static IntPtr GAME_ENDED_ADDRESS = new IntPtr(0x20694C44);  //May need to reset this to 0 after it ends, it seems to persist till the next game and doesn't reset when the player loads i
+        public static IntPtr CURRENT_MAP_ADDRESS = new IntPtr(0x20436540); // Text String of MapID, if not in a game then it is set to NONE
+        public static IntPtr SEAL_WIN_COUNTER_ADDRESS = new IntPtr(0x20695388);
+        public static IntPtr TERRORIST_WIN_COUNTER_ADDRESS = new IntPtr(0x2069539C);
+        public static IntPtr ROOM_NAME_ADDRESS = new IntPtr(0x20E40DDE);
+        public static IntPtr CUSTOM_MAP_ADDRESS = new IntPtr(0x200F71B0);
 
 
         public static List<MapDataModelS2> mapInfo = new List<MapDataModelS2>
@@ -86,14 +99,12 @@ namespace Socom_Combined_Assault_Discord_Presence
         public static IntPtr PLAYER_POINTER_ADDRESS = new IntPtr(0x20649F78);
         public static int PlayerKills = 0x6C4;
         public static int PlayerDeaths = 0x6FC;
-        public static int PlayerTeam = 0xD8;
-        public static int PlayerHealth = 0x968;
 
         //Match Information
         public static IntPtr GAME_ENDED_ADDRESS = new IntPtr(0x20887FA4);
         public static IntPtr ROOM_NAME_ADDRESS = new IntPtr(0x206D7100);
 
-        ///I'm still working on finding these addresses , these are leftover from CA for reference
+        ///I'm still working on finding these addresses , these are from CA for reference
         //public static IntPtr CURRENT_MAP_ADDRESS = new IntPtr(0x20783B78);
         //public static IntPtr SEAL_WIN_COUNTER_ADDRESS = new IntPtr(0x20ccddac);
         //public static IntPtr TERR_WIN_COUNTER_ADDRESS = new IntPtr(0x20CCDDB4);
