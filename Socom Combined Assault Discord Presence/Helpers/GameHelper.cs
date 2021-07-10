@@ -29,28 +29,28 @@ namespace Socom_Combined_Assault_Discord_Presence
     public static class SOCOM2
     {
         //r0004
-        //public static IntPtr PLAYER_POINTER_ADDRESS = new IntPtr(0x20435618);
-        //public static IntPtr GAME_ENDED_ADDRESS = new IntPtr(0x20694C44);  //May need to reset this to 0 after it ends, it seems to persist till the next game and doesn't reset when the player loads i
-        //public static IntPtr CURRENT_MAP_ADDRESS = new IntPtr(0x204417C0); // Text String of MapID, if not in a game then it is set to NONE
-        //public static IntPtr SEAL_WIN_COUNTER_ADDRESS = new IntPtr(0x20695388);
-        //public static IntPtr TERRORIST_WIN_COUNTER_ADDRESS = new IntPtr(0x2069539C);
-        //public static IntPtr ROOM_NAME_ADDRESS = new IntPtr(0x21FFBBE0);
-
-        //public static int PLAYER_KILLS_OFFSET = 0x550;
-        //public static int PLAYER_DEATHS_OFFSET = 0x556;
-        //public const string CUSTOM_MAP_ADDRESS = "200F71B0";
-
-        //r0001
-        public static IntPtr PLAYER_POINTER_ADDRESS = new IntPtr(0x20440C38);
-        public static int PLAYER_KILLS_OFFSET = 0x550;
-        public static int PLAYER_DEATHS_OFFSET = 0x556;
-
+        public static IntPtr PLAYER_POINTER_ADDRESS = new IntPtr(0x20435618);
         public static IntPtr GAME_ENDED_ADDRESS = new IntPtr(0x20694C44);  //May need to reset this to 0 after it ends, it seems to persist till the next game and doesn't reset when the player loads i
-        public static IntPtr CURRENT_MAP_ADDRESS = new IntPtr(0x20436540); // Text String of MapID, if not in a game then it is set to NONE
+        public static IntPtr CURRENT_MAP_ADDRESS = new IntPtr(0x204417C0); // Text String of MapID, if not in a game then it is set to NONE
         public static IntPtr SEAL_WIN_COUNTER_ADDRESS = new IntPtr(0x20695388);
         public static IntPtr TERRORIST_WIN_COUNTER_ADDRESS = new IntPtr(0x2069539C);
-        public static IntPtr ROOM_NAME_ADDRESS = new IntPtr(0x20E40DDE);
-        public static IntPtr CUSTOM_MAP_ADDRESS = new IntPtr(0x200F71B0);
+        public static IntPtr ROOM_NAME_ADDRESS = new IntPtr(0x21FFBBE0);
+
+        public static int PLAYER_KILLS_OFFSET = 0x550;
+        public static int PLAYER_DEATHS_OFFSET = 0x556;
+        public const string CUSTOM_MAP_ADDRESS = "200F71B0";
+
+        //r0005v67r1 (r0001 as well maybe?)
+        //public static IntPtr PLAYER_POINTER_ADDRESS = new IntPtr(0x20440C38);
+        //public static int PLAYER_KILLS_OFFSET = 0x550;
+        //public static int PLAYER_DEATHS_OFFSET = 0x556;
+
+        //public static IntPtr GAME_ENDED_ADDRESS = new IntPtr(0x20694C44);  //May need to reset this to 0 after it ends, it seems to persist till the next game and doesn't reset when the player loads i
+        //public static IntPtr CURRENT_MAP_ADDRESS = new IntPtr(0x20436540); // Text String of MapID, if not in a game then it is set to NONE
+        //public static IntPtr SEAL_WIN_COUNTER_ADDRESS = new IntPtr(0x20695388);
+        //public static IntPtr TERRORIST_WIN_COUNTER_ADDRESS = new IntPtr(0x2069539C);
+        //public static IntPtr ROOM_NAME_ADDRESS = new IntPtr(0x20E40DDE);
+        //public static IntPtr CUSTOM_MAP_ADDRESS = new IntPtr(0x200F71B0);
 
 
         public static List<MapDataModelS2> mapInfo = new List<MapDataModelS2>
@@ -96,7 +96,21 @@ namespace Socom_Combined_Assault_Discord_Presence
     public static class SOCOM3
     {
         //Patch 1.0
-        public static IntPtr PLAYER_POINTER_ADDRESS = new IntPtr(0x20649F78);
+        //public static IntPtr PLAYER_POINTER_ADDRESS = new IntPtr(0x20649F78);
+        //public static int PlayerKills = 0x6C4;
+        //public static int PlayerDeaths = 0x6FC;
+
+        ////Match Information
+        //public static IntPtr GAME_ENDED_ADDRESS = new IntPtr(0x20887FA4);
+        //public static IntPtr ROOM_NAME_ADDRESS = new IntPtr(0x206D7100);
+
+        ///I'm still working on finding these addresses , these are from CA for reference
+        //public static IntPtr CURRENT_MAP_ADDRESS = new IntPtr(0x20783B78);
+        //public static IntPtr SEAL_WIN_COUNTER_ADDRESS = new IntPtr(0x20ccddac);
+        //public static IntPtr TERR_WIN_COUNTER_ADDRESS = new IntPtr(0x20CCDDB4);
+
+        //Patch 2.3
+        public static IntPtr PLAYER_POINTER_ADDRESS = new IntPtr(0x206723F8);
         public static int PlayerKills = 0x6C4;
         public static int PlayerDeaths = 0x6FC;
 
@@ -108,24 +122,30 @@ namespace Socom_Combined_Assault_Discord_Presence
         //public static IntPtr CURRENT_MAP_ADDRESS = new IntPtr(0x20783B78);
         //public static IntPtr SEAL_WIN_COUNTER_ADDRESS = new IntPtr(0x20ccddac);
         //public static IntPtr TERR_WIN_COUNTER_ADDRESS = new IntPtr(0x20CCDDB4);
-
     }
 
     public static class SocomCA
     {
         //NEW Memory Sharp Input
         //Patch 1.0
-        public static IntPtr PLAYER_POINTER_ADDRESS = new IntPtr(0x206FEB08);
-        public static int PlayerKills = 0x654;
-        public static int PlayerDeaths = 0x65C;
-        public static IntPtr GAME_ENDED_ADDRESS = new IntPtr(0x20948264);
-        public static IntPtr CURRENT_MAP_ADDRESS = new IntPtr(0x20783B78);
-        public static IntPtr SEAL_WIN_COUNTER_ADDRESS = new IntPtr(0x20ccddac);
-        public static IntPtr MERC_WIN_COUNTER_ADDRESS = new IntPtr(0x20CCDDB4);
-        public static IntPtr ROOM_NAME_ADDRESS = new IntPtr(0x20C3D9A8);
+        //public static IntPtr PLAYER_POINTER_ADDRESS = new IntPtr(0x206FEB08);
+        //public static int PlayerKills = 0x654;
+        //public static int PlayerDeaths = 0x65C;
+        //public static IntPtr GAME_ENDED_ADDRESS = new IntPtr(0x20948264);
+        //public static IntPtr CURRENT_MAP_ADDRESS = new IntPtr(0x20783B78);
+        //public static IntPtr SEAL_WIN_COUNTER_ADDRESS = new IntPtr(0x20ccddac);
+        //public static IntPtr MERC_WIN_COUNTER_ADDRESS = new IntPtr(0x20CCDDB4);
+        //public static IntPtr ROOM_NAME_ADDRESS = new IntPtr(0x20C3D9A8);
 
         //Patch1.4
-
+        public static IntPtr PLAYER_POINTER_ADDRESS = new IntPtr(0x20709D98);
+        public static int PlayerKills = 0x654;
+        public static int PlayerDeaths = 0x65C;
+        public static IntPtr GAME_ENDED_ADDRESS = new IntPtr(0x20948204);
+        public static IntPtr CURRENT_MAP_ADDRESS = new IntPtr(0x20790040);
+        public static IntPtr SEAL_WIN_COUNTER_ADDRESS = new IntPtr(0x20CCDDEC);
+        public static IntPtr MERC_WIN_COUNTER_ADDRESS = new IntPtr(0x20CCDDF4);
+        public static IntPtr ROOM_NAME_ADDRESS = new IntPtr(0x21CD391D);
 
         //OLD Memory.dll Input
         //public const string GAME_ENDED_ADDRESS = "20948264";

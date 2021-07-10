@@ -12,12 +12,18 @@ namespace Socom_Combined_Assault_Discord_Presence
 {
     public partial class frm_Main : Form
     {
+        #region IMPORTANT
+
         private const string PCSX2PROCESSNAME = "pcsx2";
         bool pcsx2Running;
         MemorySharp m = null;
         bool gameStarted = false;
 
-        //SOCOM 1 Discord RPC
+        #endregion 
+        
+        #region // Configure Rich Presence
+
+        #region //SOCOM 1 Discord RPC
         private static RichPresence presenceS1 = new RichPresence()
         {
             Details = "Not currently in a game.",
@@ -30,8 +36,9 @@ namespace Socom_Combined_Assault_Discord_Presence
             }
         };
         public DiscordRpcClient clientS1; // SOCOM 1 Discord RPC 
+            #endregion
         
-        //SOCOM 2 Discord RPC
+            #region //SOCOM 2 Discord RPC
         private static RichPresence presenceS2 = new RichPresence()
         {
             Details = "Not currently in a game.",
@@ -44,8 +51,9 @@ namespace Socom_Combined_Assault_Discord_Presence
             }
         };
         public DiscordRpcClient clientS2; // SOCOM 2 Discord RPC 
+            #endregion
 
-        //SOCOM 3 Discord RPC
+            #region //SOCOM 3 Discord RPC
         private static RichPresence presenceS3 = new RichPresence()
         {
             Details = "Not currently in a game.",
@@ -58,8 +66,9 @@ namespace Socom_Combined_Assault_Discord_Presence
             }
         };
         public DiscordRpcClient clientS3; // SOCOM 3 Discord RPC 
-        
-        //SOCOM CA Discord RPC
+            #endregion
+
+            #region //SOCOM CA Discord RPC
         private static RichPresence presenceCA = new RichPresence()
         {
             Details = "Not currently in a game.",
@@ -72,6 +81,11 @@ namespace Socom_Combined_Assault_Discord_Presence
             }
         };
         public DiscordRpcClient clientCA; // SOCOM CA Discord RPC
+        #endregion
+
+        #endregion
+
+        #region // Main
 
         public frm_Main()
         {
@@ -97,6 +111,10 @@ namespace Socom_Combined_Assault_Discord_Presence
             clientCA.Initialize();
             //clientCA.SetPresence(presenceCA);
         }
+
+        #endregion
+
+        #region // Set Presence
 
         //SOCOM 1 Discord RPC
         private void setPresenceS1(int sealWins, int terrorWins, short kills, short deaths)
@@ -203,6 +221,10 @@ namespace Socom_Combined_Assault_Discord_Presence
             }
         }
 
+        #endregion
+
+        #region // Reset Presence
+
         private void resetPresenceS1()
         {
             presenceS1.Timestamps = null;
@@ -223,6 +245,10 @@ namespace Socom_Combined_Assault_Discord_Presence
             setPresenceS3(-1, -1);
             gameStarted = false;
         }
+
+        #endregion
+
+        #region // Timers
 
         private void tmr_CheckPCSX2_Tick(object sender, EventArgs e)
         {
@@ -250,7 +276,7 @@ namespace Socom_Combined_Assault_Discord_Presence
             }
             m = new MemorySharp(Process.GetProcessesByName(PCSX2PROCESSNAME).First());
 
-            //SOCOM 1 Discord RPC
+            #region //SOCOM 1 Discord RPC
             if (CheckBoxS1.Checked)
             {
                 try
@@ -297,8 +323,9 @@ namespace Socom_Combined_Assault_Discord_Presence
                     resetPresenceS1();
                 }
             }
+            #endregion
 
-            //SOCOM 2 Discord RPC
+            #region //SOCOM 2 Discord RPC
             if (CheckBoxS2.Checked)
             {
                 try
@@ -347,8 +374,9 @@ namespace Socom_Combined_Assault_Discord_Presence
                     resetPresenceS2();
                 }
             }
+            #endregion
 
-            //SOCOM 3 Discord RPC (MISSING VITAL INFORMATION | Game End Address and Team Win Counters)
+            #region //SOCOM 3 Discord RPC (MISSING VITAL INFORMATION | Game End Address and Team Win Counters)
             if (CheckBoxS3.Checked)
             {
                 if ((m.Read<byte>(SOCOM3.PLAYER_POINTER_ADDRESS, 4, false) != null) && (!m.Read<byte>(SOCOM3.PLAYER_POINTER_ADDRESS, 4, false).SequenceEqual(new byte[] { 0, 0, 0, 0 })))
@@ -389,16 +417,17 @@ namespace Socom_Combined_Assault_Discord_Presence
                     gameStarted = false;
                 }
             }
+            #endregion
 
-            //SOCOM Combined Assault Discord RPC
+            #region //SOCOM Combined Assault Discord RPC
             if (CheckBoxCA.Checked)
             {
                 //Check to make sure that the user is even in a game to begin with
                 if ((m.Read<byte>(SocomCA.PLAYER_POINTER_ADDRESS, 4, false) != null) && (!m.Read<byte>(SocomCA.PLAYER_POINTER_ADDRESS, 4, false).SequenceEqual(new byte[] { 0, 0, 0, 0 })))
                 {
-                    if (m.Read<byte>(SocomCA.GAME_ENDED_ADDRESS, false) == 0)
+                    if (m.Read<byte>(SocomCA.PLAYER_POINTER_ADDRESS, false) != 0)
                     {
-                        //string roomName = ByteConverstionHelper.convertBytesToString(m.Read<byte>(GameHelper.ROOM_NAME_ADDRESS, 22, false));
+                        //string roomName = ByteConverstionHelper.convertBytesToString(m.Read<byte>(SocomCA.ROOM_NAME_ADDRESS, 22, false));
                         string roomName = m.ReadString(SocomCA.ROOM_NAME_ADDRESS, Encoding.Default, false, 4);
                         IntPtr playerObjectAddress = new IntPtr(m.Read<int>(SocomCA.PLAYER_POINTER_ADDRESS, false)).OffsetToPlaystationMemory();
                         short PlayerKills = m.Read<short>(playerObjectAddress + SocomCA.PlayerKills, false);
@@ -436,6 +465,9 @@ namespace Socom_Combined_Assault_Discord_Presence
                     gameStarted = false;
                 }
             }
+                #endregion
         }
+
+        #endregion
     }
 }
