@@ -1,4 +1,4 @@
-﻿namespace Socom_Combined_Assault_Discord_Presence
+﻿namespace SocomRichPresence
 {
     partial class frm_Main
     {
@@ -32,6 +32,7 @@
             this.tmr_GetPCSX2Data = new System.Windows.Forms.Timer(this.components);
             this.tmr_CheckPCSX2 = new System.Windows.Forms.Timer(this.components);
             this.lbl_PCSX2 = new System.Windows.Forms.Label();
+            this.lbl_SelectedGame = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // tmr_GetPCSX2Data
@@ -54,12 +55,24 @@
             this.lbl_PCSX2.TabIndex = 2;
             this.lbl_PCSX2.Text = "label1";
             // 
+            // lbl_SelectedGame
+            // 
+            this.lbl_SelectedGame.AutoSize = true;
+            this.lbl_SelectedGame.BackColor = System.Drawing.Color.Black;
+            this.lbl_SelectedGame.ForeColor = System.Drawing.Color.Lime;
+            this.lbl_SelectedGame.Location = new System.Drawing.Point(53, 13);
+            this.lbl_SelectedGame.Name = "lbl_SelectedGame";
+            this.lbl_SelectedGame.Size = new System.Drawing.Size(35, 13);
+            this.lbl_SelectedGame.TabIndex = 3;
+            this.lbl_SelectedGame.Text = "label1";
+            // 
             // frm_Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(221, 35);
+            this.Controls.Add(this.lbl_SelectedGame);
             this.Controls.Add(this.lbl_PCSX2);
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(237, 74);
@@ -76,6 +89,7 @@
         private System.Windows.Forms.Timer tmr_GetPCSX2Data;
         private System.Windows.Forms.Timer tmr_CheckPCSX2;
         private System.Windows.Forms.Label lbl_PCSX2;
+        private System.Windows.Forms.Label lbl_SelectedGame;
     }
 }
 

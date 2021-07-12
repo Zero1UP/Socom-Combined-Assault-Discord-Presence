@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Socom_Combined_Assault_Discord_Presence
+namespace SocomRichPresence
 {
     public static class ByteConverstionHelper
     {

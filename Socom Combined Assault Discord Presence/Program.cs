@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Socom_Combined_Assault_Discord_Presence
+namespace SocomRichPresence
 {
     static class Program
     {
